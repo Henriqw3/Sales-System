@@ -3,7 +3,7 @@
 CREATE DATABASE BDSALES;
 
 
-CREATE USER 'groot'@'%' IDENTIFIED BY '123o.o123';
+CREATE USER 'groot'@'%' IDENTIFIED BY 'groot123';
 
 GRANT ALL ON *.* TO 'groot'@'%' WITH GRANT OPTION;
 
@@ -11,7 +11,7 @@ GRANT ALL ON *.* TO 'groot'@'%' WITH GRANT OPTION;
 flush privileges;
 
 
-USE BDVENDAS;
+USE BDSALES;
 
 /***** TABELA CLIENTES *****/
 CREATE TABLE tb_clientes (
