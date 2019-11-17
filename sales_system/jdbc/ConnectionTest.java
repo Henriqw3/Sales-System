@@ -1,5 +1,6 @@
 package br.com.salessystem.jdbc;
 
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 /**
  *
