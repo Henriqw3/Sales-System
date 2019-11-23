@@ -7,6 +7,7 @@ package br.com.salessystem.dao;
 
 import br.com.salessystem.jdbc.ConnectionFactory;
 import br.com.salessystem.model.Clientes;
+import br.com.salessystem.model.WebServiceCep;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ import javax.swing.JOptionPane;
 
 public class ClientesDAO {
     
+    //Connection Data Bank
     private Connection conn;
     //Methods
     
@@ -230,6 +232,27 @@ public class ClientesDAO {
             return null;
         }
     }
+    
+    //Busca CEP
+    public Clientes buscaCep(String cep) {
+       
+        WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
+       
 
+        Clientes obj = new Clientes();
+
+        if (webServiceCep.wasSuccessful()) {
+            obj.setEndereco(webServiceCep.getLogradouroFull());
+            obj.setCidade(webServiceCep.getCidade());
+            obj.setBairro(webServiceCep.getBairro());
+            obj.setUf(webServiceCep.getUf());
+            return obj;
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
+            JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
+            return null;
+        }
+
+    }
     
 }
